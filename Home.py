@@ -1,12 +1,9 @@
 import streamlit as st
 import requests
-import os
-from dotenv import load_dotenv
-
+ 
 st.set_page_config(page_title="About Intern Recruitment Simulation")
 st.title("About This Application")
 
-load_dotenv()
 PANTRY_ID = "8732fb03-8ddd-4949-a7e3-9f9f6528170e"
 PANTRY_URL = f"https://getpantry.cloud/apiv1/pantry/{PANTRY_ID}/basket/scores"
 
