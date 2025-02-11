@@ -9,7 +9,7 @@ st.set_page_config(page_title="Intern/FTE Recruitment Simulation")
 st.title("Question 2")
 
 load_dotenv()
-PANTRY_ID = os.getenv("PANTRY_ID")
+PANTRY_ID = "8732fb03-8ddd-4949-a7e3-9f9f6528170e"
 PANTRY_URL = f"https://getpantry.cloud/apiv1/pantry/{PANTRY_ID}/basket/scores"
 
 submit_btn = False
