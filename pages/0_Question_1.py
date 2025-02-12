@@ -73,11 +73,49 @@ sorted_df.columns = ["Department", "Employee", "Salary"]
 # Sort by Department (IT first, Sales second) and then by Salary (descending)
 sorted_df = sorted_df.sort_values(by=["Department", "Salary"], ascending=[True, False]).reset_index(drop=True)
 
-st.subheader("Employees Table, named 'employees'")
-st.write(employees_df)
+col1,col2=st.columns(2)
 
-st.subheader("Departments Table, named 'departments'")
-st.write(departments_df)
+with col1:
+    st.subheader("Employees Table, named 'employees'")
+    st.write(employees_df)
+
+with col2:
+    st.subheader("Departments Table, named 'departments'")
+    st.write(departments_df)
+
+st.markdown("""
+# Employee and Department Salary Listing
+
+## Problem Statement
+
+You are given two database tables:
+
+### 1. Employees Table (`employees`)
+Contains information about employees, including:
+- `id`: Employee ID
+- `name`: Employee Name
+- `salary`: Employee Salary
+- `department`: Department ID (Foreign Key)
+
+### 2. Departments Table (`departments`)
+Contains department details, including:
+- `id`: Department ID (Primary Key)
+- `name`: Department Name
+
+### Task
+Write an SQL query to generate a report displaying:
+- The department name (`Department`)
+- The employee's name (`Employee`)
+- The employee's salary (`Salary`)
+
+### Sorting Requirements
+- First, sort by **department name in ascending order**.
+- Then, within each department, sort employees by **salary in descending order**.
+
+### Expected Output
+A table where employees are grouped by their respective departments, with salaries listed in descending order.
+
+""")
 
 st.subheader("Expected Table:")
 st.write(sorted_df)

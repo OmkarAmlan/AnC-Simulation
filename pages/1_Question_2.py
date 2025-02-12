@@ -71,12 +71,50 @@ expected_query = '''
     GROUP BY customer_id
     HAVING COUNT(DISTINCT p.product_category) = (SELECT COUNT(DISTINCT product_category) FROM products)
 '''
-expected_df = pd.read_sql_query(expected_query, conn)
-st.subheader("Customer Contracts Table, named 'customer_contracts'")
-st.write(customer_df)
 
-st.subheader("Products Table, named 'products'")
-st.write(product_df)
+cols1,cols2=st.columns(2)
+
+expected_df = pd.read_sql_query(expected_query, conn)
+with cols1:
+    st.subheader("Customer Contracts Table, named 'customer_contracts'")
+    st.write(customer_df)
+
+with cols2:
+    st.subheader("Products Table, named 'products'")
+    st.write(product_df)
+    
+st.markdown("""
+# Customer Coverage Across Product Categories
+
+## Problem Statement
+
+You are given two database tables:
+
+### 1. Customer Contracts Table (`customer_contracts`)
+Contains information about customer contracts, including:
+- `customer_id`: The ID of the customer.
+- `product_id`: The ID of the purchased product.
+- `amount`: The amount spent on the product.
+
+### 2. Products Table (`products`)
+Contains product details, including:
+- `product_id`: The ID of the product (Primary Key).
+- `product_category`: The category of the product.
+- `product_name`: The name of the product.
+
+## Task
+Write an SQL query to find customers who have purchased **at least one product from every distinct product category** available in the `products` table.
+
+## Constraints
+- A customer qualifies **only if** they have contracts for products covering **all unique product categories**.
+- The result should return the list of such `customer_id`s.
+
+## Expected Output
+A table with a single column:
+- `customer_id`: The IDs of customers who have purchased from all categories.
+
+""")
+
 
 st.subheader("Expected Output Table")
 st.write(expected_df)
